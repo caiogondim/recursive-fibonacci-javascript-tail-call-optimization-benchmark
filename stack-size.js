@@ -1,3 +1,5 @@
+// Reference: http://jsfiddle.net/9YMDF/9/
+
 'use strict'
 
 var levels = [];
