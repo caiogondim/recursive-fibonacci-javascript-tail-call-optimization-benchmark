@@ -60,8 +60,13 @@ const table = new Table({
   head: ['# vars', 'max stack size']
 })
 
+const babar = require('babar')
+let graphOutput = []
+
 levels.forEach((level, index) => {
   table.push([index, level])
+  graphOutput.push([index, level])
 })
 
 console.log(table.toString())
+console.log(babar(graphOutput, {color: 'ascii'}))
