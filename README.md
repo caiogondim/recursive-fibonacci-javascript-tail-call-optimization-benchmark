@@ -14,4 +14,7 @@ with more and less memory footprint.
 node stack-size
 ```
 
-<img src"img/stack-size-output.png" />
+<img
+  src="https://raw.githubusercontent.com/caiogondim/studies-about-tail-call-optimization-in-javascript/master/img/stack-size-output.png"
+  alt="stack-size-output.png"
+/>
