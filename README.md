@@ -11,7 +11,7 @@ The below script calls functions recursively with no base case (there is no stop
 with more and less memory footprint.
 
 ```
-node stack-size
+node max-call-stack-size
 ```
 
 <img
