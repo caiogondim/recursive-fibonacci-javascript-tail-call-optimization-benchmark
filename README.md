@@ -1,5 +1,11 @@
 # Studies about tail call optimization (TCO) in JavaScript
 
+To run a JS file with TCO enabled on Node.js you have to run with `--harmony_tailcalls` flag.
+
+```
+node --harmony_tailcalls name-of-file.js
+```
+
 ## Max call stack size
 
 ### Learnings
@@ -18,3 +24,15 @@ node max-call-stack-size
   src="https://raw.githubusercontent.com/caiogondim/studies-about-tail-call-optimization-in-javascript/master/img/stack-size-output.png"
   alt="stack-size-output.png"
 />
+
+## Benchmark on recursive fibonacci with and without TCO
+
+```
+node benchmark-fibonacci-with-without-tco
+```
+
+## Test
+
+## Results
+
+## Learnings
