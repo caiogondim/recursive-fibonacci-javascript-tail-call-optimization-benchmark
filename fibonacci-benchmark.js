@@ -3,6 +3,11 @@
 // Reference: http://benignbemine.github.io/2015/07/19/es6-tail-calls/
 
 const debug = require('logdown')()
+const Benchmark = require('benchmark')
+
+//
+// Fibonacci algorithm definitions
+//
 
 function fibRecursive(n) {
   if (n <= 1){
@@ -25,9 +30,9 @@ function fibRecursiveWithTco(n) {
 }
 
 function fibIterative(n) {
-  var a = 1, b = 0, temp;
+  var a = 1, b = 0, temp
 
-  while (n > 0){
+  while (n > 0) {
     temp = a;
     a = a + b;
     b = temp;
@@ -38,26 +43,39 @@ function fibIterative(n) {
 }
 
 //
-// View
+// Benchmark
 //
 
-const ns = [8, 13, 21, 34]
-// const ns = [8, 13, 21, 34, 55, 89]
+const fibonacciSequence = [8, 13, 21, 34, 55]
+const benchmarkSuite = new Benchmark.Suite()
 
-ns.forEach((n, index) => {
-  debug.info('Fibonacci for n =', n)
+var algorithms = [
+  {
+    name: 'recursive',
+    func: fibRecursive
+  },
+  {
+    name: 'recursive with TCO',
+    func: fibRecursiveWithTco
+  },
+  {
+    name: 'iterative',
+    func: fibIterative
+  }
+]
 
-  console.time('fibRecursive')
-  fibRecursive(n)
-  console.timeEnd('fibRecursive')
-
-  console.time('fibRecursiveWithTco')
-  fibRecursiveWithTco(n)
-  console.timeEnd('fibRecursiveWithTco')
-
-  console.time('fibIterative')
-  fibIterative(n)
-  console.timeEnd('fibIterative')
-
-  console.log('\n')
+algorithms.forEach(algorithm => {
+  fibonacciSequence.forEach(n => {
+    benchmarkSuite.add(`${algorithm.name} for ${n}`, () => {
+      algorithm.func(n)
+    })
+  })
 })
+
+benchmarkSuite
+  .on('cycle', event => {
+    debug.log(String(event.target))
+  })
+  .run({
+    maxTime: 60
+  })
